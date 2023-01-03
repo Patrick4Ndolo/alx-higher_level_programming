@@ -1,3 +1,4 @@
 #!/bin/bash
 #!/usr/bin/python3
-print("Best School\n")
+print("Best School")
+print("\n")
