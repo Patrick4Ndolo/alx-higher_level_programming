@@ -11,4 +11,3 @@ for num1 in range(0, 10):
             print(f"{num1} {num2}")
         else:
             print(f"{num1} {num2}", end=", ")
-
