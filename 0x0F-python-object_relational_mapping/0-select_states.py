@@ -4,19 +4,7 @@ from sys import argv
 import MySQLdb
 
 if __name__ == "__main__":
-    mysql username = argv[]
-    mysql password = argv[]
-    db_name = argv[]
-    db = MySQLdb.connect(host="localhost",
-                         port=3306,
-                         user=username,
-                         passwd=password,
-                         db=db_name)
-    cur = db.cursor()
-    cur.execute("SELECT states.id, name FROM states ORDER BY states.id ASC;")
-    rows = cur.fetchall()
-    for row in rows:
-        print(row)
-
-    cur.close()
-    db.close()
+    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
+    c = db.cursor()
+    c.execute("SELECT * FROM `states`")
+    [print(state) for state in c.fetchall()]

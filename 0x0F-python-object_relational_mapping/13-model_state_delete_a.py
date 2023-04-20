@@ -9,14 +9,13 @@ from sys import argv
 
 
 if __name__ == "__main__":
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(
-        argv[1], argv[2], argv[3]), pool_pre_ping=True)
+    engine = create_engine("mysql+mysqldb://{}:{}@localhost:3306/{}".format(
+        sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
+    session_maker = sessionmaker(bind=engine)
+    session = session_maker()
 
-    Base.metadata.create_all(engine)
-    session = Session(engine)
-
-    for state in session.query(State).\
-            filter(State.name.like('%a%')):
+    states = session.query(State).filter(State.name.like('%a%')).all()
+    for state in states:
         session.delete(state)
+
     session.commit()
-    session.close()i
